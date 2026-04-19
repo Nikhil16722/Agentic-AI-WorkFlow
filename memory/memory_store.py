@@ -3,6 +3,7 @@ memory/memory_store.py
 -----------------------
 Persistent memory system for all agents.
 Connected to Supabase as the database.
+Fallback: local in-memory dict.
 """
 
 import os
@@ -15,6 +16,9 @@ from supabase import create_client, Client
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# ── Create logs folder if it doesn't exist ──
+os.makedirs("logs", exist_ok=True)
 
 logging.basicConfig(
     filename="logs/agent_logs.txt",
@@ -81,7 +85,6 @@ class MemoryStore:
             "agent_name": agent_name,
             "created_at": datetime.now().isoformat()
         }
-        logger.info(f"[MemoryStore] Saved to local memory: key='{key}'")
         return True
 
     def get(self, key: str) -> Optional[dict]:
@@ -142,7 +145,6 @@ class MemoryStore:
         if not self._use_local:
             try:
                 self.supabase.table(self.TABLE_NAME).delete().eq("key", key).execute()
-                logger.info(f"[MemoryStore] Deleted: key='{key}'")
                 return True
             except Exception as e:
                 logger.error(f"[MemoryStore] Supabase delete failed: {e}.")
@@ -157,14 +159,12 @@ class MemoryStore:
         if not self._use_local:
             try:
                 self.supabase.table(self.TABLE_NAME).delete().neq("key", "").execute()
-                logger.warning("[MemoryStore] ALL records cleared from Supabase.")
                 return True
             except Exception as e:
                 logger.error(f"[MemoryStore] Supabase clear_all failed: {e}.")
                 self._use_local = True
 
         self._local_memory.clear()
-        logger.warning("[MemoryStore] ALL records cleared from local memory.")
         return True
 
     def count(self) -> int:
