@@ -1,41 +1,32 @@
 # ============================================
 # NeuralFlow — Agentic AI Workflow
-# requirements.txt
-# Compatible with Python 3.10–3.13
-# Streamlit Cloud uses Python 3.11 by default
+# requirements.txt — No CrewAI (Python 3.14 safe)
 # ============================================
 
-# --- Force Python 3.11 on Streamlit Cloud ---
-# (handled by runtime.txt — see below)
-
-# --- Core Agent Framework ---
-crewai==0.28.8
-
-# --- LLM ---
-langchain-groq==0.1.3
-langchain==0.1.20
-langchain-core==0.1.52
-langchain-community==0.0.38
+# --- LLM (Groq - Free) ---
+langchain-groq>=0.1.3
+langchain>=0.1.20
+langchain-core>=0.1.52
+langchain-community>=0.0.38
 
 # --- Database ---
-supabase==2.4.2
+supabase>=2.4.2
 
 # --- UI ---
-streamlit==1.33.0
+streamlit>=1.33.0
 
-# --- Google APIs ---
-google-auth==2.29.0
-google-auth-oauthlib==1.2.0
-google-auth-httplib2==0.2.0
-google-api-python-client==2.126.0
+# --- Google APIs (Optional) ---
+google-auth>=2.29.0
+google-auth-oauthlib>=1.2.0
+google-auth-httplib2>=0.2.0
+google-api-python-client>=2.126.0
 
-# --- Slack ---
-slack-sdk==3.27.1
-requests==2.31.0
+# --- Slack (Optional) ---
+slack-sdk>=3.27.1
+requests>=2.31.0
 
 # --- Environment ---
-python-dotenv==1.0.0
+python-dotenv>=1.0.0
 
 # --- Utilities ---
-pydantic==2.7.0
-typing-extensions==4.11.0
+pydantic>=2.7.0
