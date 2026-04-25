@@ -1,21 +1,22 @@
 # ============================================
-# NeuralFlow — Agentic AI Workflow
-# requirements.txt — No CrewAI (Python 3.14 safe)
+# NeuralFlow — Agentic AI Workflow Automation
+# requirements.txt
+# Python 3.14 compatible — No CrewAI
 # ============================================
 
-# --- LLM (Groq - Free) ---
+# --- LLM (Groq - Free & Fast) ---
 langchain-groq>=0.1.3
 langchain>=0.1.20
 langchain-core>=0.1.52
 langchain-community>=0.0.38
 
-# --- Database ---
+# --- Database (Supabase) ---
 supabase>=2.4.2
 
-# --- UI ---
+# --- UI (Streamlit) ---
 streamlit>=1.33.0
 
-# --- Google APIs (Optional) ---
+# --- Google APIs (Calendar + Gmail - Optional) ---
 google-auth>=2.29.0
 google-auth-oauthlib>=1.2.0
 google-auth-httplib2>=0.2.0
@@ -25,7 +26,7 @@ google-api-python-client>=2.126.0
 slack-sdk>=3.27.1
 requests>=2.31.0
 
-# --- Environment ---
+# --- Environment Variables ---
 python-dotenv>=1.0.0
 
 # --- Utilities ---
